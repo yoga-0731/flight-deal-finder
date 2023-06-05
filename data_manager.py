@@ -3,9 +3,9 @@ import requests
 
 PRICE_GET_ENDPOINT = os.environ.get('SHEETY_GET_ENDPOINT')
 PRICE_PUT_ENDPOINT = os.environ.get('SHEETY_PUT_ENDPOINT')
-HEADERS = {"Authorization": os.environ.get('SHEETY_API_KEY')}
-USER_POST_ENDPOINT = os.getenv('SHEETY_USER_ENDPOINT')
 SHEETY_API_KEY = os.getenv('SHEETY_API_KEY')
+HEADERS = {"Authorization": SHEETY_API_KEY}
+USER_POST_ENDPOINT = os.getenv('SHEETY_USER_ENDPOINT')
 
 
 class DataManager:
@@ -30,7 +30,6 @@ class DataManager:
             response.raise_for_status()
 
     def add_new_user(self, first_name, last_name, email):
-        headers = {"Authorization": SHEETY_API_KEY}
         parameters = {
             "user": {
                 "firstName": first_name,
@@ -38,5 +37,5 @@ class DataManager:
                 "email": email
             }
         }
-        response = requests.post(url=USER_POST_ENDPOINT, json=parameters, headers=headers)
+        response = requests.post(url=USER_POST_ENDPOINT, json=parameters, headers=HEADERS)
         # print(response.text)
