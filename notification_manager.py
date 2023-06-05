@@ -1,6 +1,9 @@
 import os
 from twilio.rest import Client
+import smtplib
 
+USER = os.environ.get('PYTHON_TEST_EMAIL')
+PASSWORD = os.environ.get('PASSWORD')
 
 class NotificationManager:
     # This class is responsible for sending notifications with the deal flight details.
@@ -17,4 +20,14 @@ class NotificationManager:
             to=os.environ.get('TWILIO_TO_NUMBER')
         )
 
-        print(message.sid)
+        # print(message.sid)
+
+    def send_emails(self, message, to_email):
+        with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
+            connection.starttls()
+            connection.login(user=USER, password=PASSWORD)
+            connection.sendmail(
+                from_addr=USER,
+                to_addrs=to_email,
+                msg=f"Subject: Flight Deal Alert!\n\n{message}"
+            )
