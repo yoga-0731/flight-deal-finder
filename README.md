@@ -1,6 +1,6 @@
 # flight-deal-finder
 
-A flight deal low price alerting app hosted on [pythonanywhere](https://www.pythonanywhere.com/)
+A flight deal low price alerting app hosted on [pythonanywhere](https://www.pythonanywhere.com/).  
 Getting name, email and mobile number as input and alerting the user when a low flight price is reached.
 
 **Tech Stack / Tools** - Python, smtplib, Tequila flight search API, Sheety google sheet API, Twilio API
